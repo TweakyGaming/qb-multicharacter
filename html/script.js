@@ -15,7 +15,7 @@ $(document).ready(function (){
                 $(".welcomescreen").fadeIn(150);
                 qbMultiCharacters.resetAll();
 
-                var originalText = "Retrieving player data";
+                var originalText = "Abrufen von Spielerdaten";
                 var loadingProgress = 0;
                 var loadingDots = 0;
                 $("#loading-text").html(originalText);
@@ -24,15 +24,15 @@ $(document).ready(function (){
                     loadingDots++;
                     loadingProgress++;
                     if (loadingProgress == 3) {
-                        originalText = "Validating player data"
+                        originalText = "Validierung von Spielerdaten"
                         $("#loading-text").html(originalText);
                     }
                     if (loadingProgress == 4) {
-                        originalText = "Retrieving characters"
+                        originalText = "Abrufen von Bürgerinformationen"
                         $("#loading-text").html(originalText);
                     }
                     if (loadingProgress == 6) {
-                        originalText = "Validating characters"
+                        originalText = "Bürgerinformationen Bestätigen"
                         $("#loading-text").html(originalText);
                     }
                     if(loadingDots == 4) {
@@ -85,20 +85,20 @@ $('.disconnect-btn').click(function(e){
 
 function setupCharInfo(cData) {
     if (cData == 'empty') {
-        $('.character-info-valid').html('<span id="no-char">The selected character slot is not in use yet.<br><br>This character doesn\'t have information yet.</span>');
+        $('.character-info-valid').html('<span id="no-char">Der ausgewählte Charakterslot ist noch nicht belegt.<br><br>Es liegen noch keine Informationen vor.</span>');
     } else {
         var gender = "Man"
         if (cData.charinfo.gender == 1) { gender = "Woman" }
         $('.character-info-valid').html(
         '<div class="character-info-box"><span id="info-label">Name: </span><span class="char-info-js">'+cData.charinfo.firstname+' '+cData.charinfo.lastname+'</span></div>' +
-        '<div class="character-info-box"><span id="info-label">Birth date: </span><span class="char-info-js">'+cData.charinfo.birthdate+'</span></div>' +
-        '<div class="character-info-box"><span id="info-label">Gender: </span><span class="char-info-js">'+gender+'</span></div>' +
-        '<div class="character-info-box"><span id="info-label">Nationality: </span><span class="char-info-js">'+cData.charinfo.nationality+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label">Geburtstag: </span><span class="char-info-js">'+cData.charinfo.birthdate+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label">Geschlächt: </span><span class="char-info-js">'+gender+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label">Nationalität: </span><span class="char-info-js">'+cData.charinfo.nationality+'</span></div>' +
         '<div class="character-info-box"><span id="info-label">Job: </span><span class="char-info-js">'+cData.job.label+'</span></div>' +
-        '<div class="character-info-box"><span id="info-label">Cash: </span><span class="char-info-js">&#36; '+cData.money.cash+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label">Bargeld: </span><span class="char-info-js">&#36; '+cData.money.cash+'</span></div>' +
         '<div class="character-info-box"><span id="info-label">Bank: </span><span class="char-info-js">&#36; '+cData.money.bank+'</span></div>' +
-        '<div class="character-info-box"><span id="info-label">Phone number: </span><span class="char-info-js">'+cData.charinfo.phone+'</span></div>' +
-        '<div class="character-info-box"><span id="info-label">Account number: </span><span class="char-info-js">'+cData.charinfo.account+'</span></div>');
+        '<div class="character-info-box"><span id="info-label">Telefonnummer: </span><span class="char-info-js">'+cData.charinfo.phone+'</span></div>' +
+        '<div class="character-info-box"><span id="info-label">Bürger-Nr: </span><span class="char-info-js">'+cData.charinfo.account+'</span></div>');
     }
 }
 
@@ -140,7 +140,7 @@ $(document).on('click', '.character', function(e) {
         } else {
             $(selectedChar).addClass("char-selected");
             setupCharInfo($(this).data('cData'))
-            $("#play-text").html("Play");
+            $("#play-text").html("Aufwachen");
             $("#delete-text").html("Delete");
             $("#play").css({"display":"block"});
             $("#delete").css({"display":"block"});
@@ -163,7 +163,7 @@ $(document).on('click', '.character', function(e) {
         } else {
             $(selectedChar).addClass("char-selected");
             setupCharInfo($(this).data('cData'))
-            $("#play-text").html("Play");
+            $("#play-text").html("Aufwachen");
             $("#delete-text").html("Delete");
             $("#play").css({"display":"block"});
             $("#delete").css({"display":"block"});
@@ -211,7 +211,7 @@ $(document).on('click', '#create', function (e) {
     }
 
     if(regTest.test(firstname) || regTest.test(lastname)){
-        console.log("ERROR: You used a derogatory/vulgar term. Please try again!")
+        console.log("Fehler: Sie haben einen abwertenden/vulgären Begriff verwendet. Bitte versuchen Sie es erneut!")
         return false;
     }
 
@@ -247,21 +247,21 @@ $(document).on('click', '#cancel-delete', function(e){
 });
 
 function setCharactersList() {
-    var htmlResult = '<div class="character-list-header"><p>My Characters</p></div>'
+    var htmlResult = '<div class="character-list-header"><p>Meine Charakter</p></div>'
     for (let i = 1; i <= NChar; i++) {
-        htmlResult += '<div class="character" id="char-'+ i +'" data-cid=""><span id="slot-name">Empty Slot<span id="cid"></span></span></div>'
+        htmlResult += '<div class="character" id="char-'+ i +'" data-cid=""><span id="slot-name">Leerer Slot<span id="cid"></span></span></div>'
     }
-    htmlResult += '<div class="character-btn" id="play"><p id="play-text">Select a character</p></div><div class="character-btn" id="delete"><p id="delete-text">Select a character</p></div>'
+    htmlResult += '<div class="character-btn" id="play"><p id="play-text">Wähle ein Charakter</p></div><div class="character-btn" id="delete"><p id="delete-text">Wähle ein Charakter</p></div>'
     $('.characters-list').html(htmlResult)
 }
 
 function refreshCharacters() {
     var htmlResult = ''
     for (let i = 1; i <= NChar; i++) {
-        htmlResult += '<div class="character" id="char-'+ i +'" data-cid=""><span id="slot-name">Empty Slot<span id="cid"></span></span></div>'
+        htmlResult += '<div class="character" id="char-'+ i +'" data-cid=""><span id="slot-name">Leerer Slot<span id="cid"></span></span></div>'
     }
 
-    htmlResult += '<div class="character-btn" id="play"><p id="play-text">Select a character</p></div><div class="character-btn" id="delete"><p id="delete-text">Select a character</p></div>'
+    htmlResult += '<div class="character-btn" id="play"><p id="play-text">Wähle ein Charakter</p></div><div class="character-btn" id="delete"><p id="delete-text">Wähle ein Charakter</p></div>'
     $('.characters-list').html(htmlResult)
     
     setTimeout(function(){
